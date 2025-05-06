@@ -61,14 +61,4 @@ public class Funcionario {
     public void setValorHora(double valorHora) {
         this.valorHora = validaValorHora(valorHora);
     }
-
-
-
-//     As regras para o cálculo do pagamento são as seguintes:
-// ● O valor do pagamento dos funcionários deve ser maior ou igual ao valor atual do salário mínimo,
-// que corresponde a R$ 1518.00. O salário não pode ultrapassar o teto de 100000.00
-// ● Os funcionários podem trabalhar por no máximo 40 horas. A carga horária mínima é de 20 horas.
-// ● O valor por hora precisa ser entre 4% e 10% do salário mínimo.
-// ● O valor das despesas adicionais não pode ultrapassar R$ 1000.00.
-
 }
