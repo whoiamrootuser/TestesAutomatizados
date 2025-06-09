@@ -2,20 +2,20 @@ import { expect } from 'chai';
 import { ProductsRepository } from '../../src/products/products.repository';
 import { Product } from '../../src/products/products.entity';
 import sinon from 'sinon';
+import { Test, TestingModule } from '@nestjs/testing';
 
 describe('ProductsRepository', () => {
   let productsRepository: ProductsRepository;
   let mockProduct: Product;
 
-  beforeEach(() => {
-    productsRepository = new ProductsRepository();
-    mockProduct = new Product();
-    mockProduct.id = 1;
-    mockProduct.code = 'P001';
-    mockProduct.name = 'Product 1';
-    mockProduct.price = 100;
-    mockProduct.stock = 50;
-  });
+    let testingModule: TestingModule;
+  
+    beforeEach(async () => {
+      testingModule = await Test.createTestingModule({
+        providers: [ProductsRepository],
+      }).compile();
+    });
+  
 
   afterEach(() => {
     sinon.restore();
@@ -37,7 +37,7 @@ describe('ProductsRepository', () => {
 
   it('should find a product by id', async () => {
     const findOneStub = sinon.stub(productsRepository, 'findOne').returns(Promise.resolve(mockProduct));
-    const result = await productsRepository.findOne(1);
+    const result = await productsRepository.findOne({where: { id: 1 }});
     expect(result).to.deep.equal(mockProduct);
     expect(findOneStub.calledOnce).to.be.true;
   });
@@ -50,9 +50,10 @@ describe('ProductsRepository', () => {
   });
 
   it('should delete a product', async () => {
-    const deleteStub = sinon.stub(productsRepository, 'delete').returns(Promise.resolve({ affected: 1 }));
+    const deleteResult = { raw: {}, affected: 1 };
+    const deleteStub = sinon.stub(productsRepository, 'delete').returns(Promise.resolve(deleteResult));
     const result = await productsRepository.delete(1);
-    expect(result).to.deep.equal({ affected: 1 });
+    expect(result).to.deep.equal({ raw: {}, affected: 1 });
     expect(deleteStub.calledOnce).to.be.true;
   });
 });

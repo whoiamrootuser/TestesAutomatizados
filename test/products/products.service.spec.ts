@@ -49,7 +49,7 @@ describe('ProductsService', () => {
 
       const result = await productsService.findOne(1);
       expect(result).to.deep.equal(product);
-      expect(productsRepository.findOne.calledOnceWith(1)).to.be.true;
+      expect(productsRepository.findOne.calledOnceWith({ where: { id: 1 } })).to.be.true;
     });
   });
 
@@ -63,7 +63,7 @@ describe('ProductsService', () => {
 
       const result = await productsService.update(1, productData);
       expect(result).to.deep.equal(product);
-      expect(productsRepository.findOne.calledOnceWith(1)).to.be.true;
+      expect(productsRepository.findOne.calledOnceWith({ where: { id: 1 } })).to.be.true;
       expect(productsRepository.save.calledOnce).to.be.true;
     });
   });
@@ -77,7 +77,7 @@ describe('ProductsService', () => {
 
       const result = await productsService.remove(1);
       expect(result).to.deep.equal(product);
-      expect(productsRepository.findOne.calledOnceWith(1)).to.be.true;
+      expect(productsRepository.findOne.calledOnceWith({ where: { id: 1 } })).to.be.true;
       expect(productsRepository.remove.calledOnce).to.be.true;
     });
   });

@@ -12,9 +12,9 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "mocha -r ts-node/register 'src/**/*.spec.ts'",
-    "test:watch": "mocha -r ts-node/register --watch 'src/**/*.spec.ts'",
-    "test:cov": "nyc mocha -r ts-node/register 'src/**/*.spec.ts'"
+    "test": "mocha -r ts-node/register 'test/**/*.spec.ts'",
+    "test:watch": "mocha -r ts-node/register --watch 'test/**/*.spec.ts'",
+    "test:cov": "nyc mocha -r ts-node/register 'test/**/*.spec.ts'"
   },
   "engines": {
     "npm": ">=10.0.0",
@@ -38,8 +38,9 @@
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.10.8",
     "@types/express": "^5.0.0",
-    "@types/jest": "^29.5.14",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.7",
+    "@types/sinon": "^17.0.4",
     "@types/supertest": "^6.0.2",
     "chai": "^5.2.0",
     "eslint": "^9.18.0",
